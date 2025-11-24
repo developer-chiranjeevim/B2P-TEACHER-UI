@@ -226,11 +226,9 @@ export default function DashBoard() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <Link to={meeting.url} target="_blank">
-                                                    <button className={`w-full mt-3 py-2 ${getStatusColor(meeting.status)} text-white rounded-lg capitalize `}>
-                                                        {meeting.status}
-                                                    </button>
-                                                </Link>
+                                                <button className={`w-full mt-3 py-2 ${getStatusColor(meeting.status)} text-white rounded-lg capitalize `}>
+                                                    {meeting.status}
+                                                </button>
                                             </div>
                                         ))
                                     }
