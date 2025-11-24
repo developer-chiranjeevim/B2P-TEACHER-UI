@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { Users, DollarSign, Video, Clock, ChevronLeft, ChevronRight, Calendar, User} from 'lucide-react';
+import { Users, DollarSign, Video, Clock, ChevronLeft, ChevronRight, Calendar} from 'lucide-react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -79,12 +79,6 @@ export default function DashBoard() {
     };
 
 
-
-  const recentAssignments = [
-    { title: 'Quadratic Equations Quiz', subject: 'Mathematics', submitted: 18, total: 25, dueDate: 'Today' },
-    { title: 'Newton\'s Laws Project', subject: 'Physics', submitted: 12, total: 18, dueDate: 'Tomorrow' },
-    { title: 'Chemical Bonding Worksheet', subject: 'Chemistry', submitted: 20, total: 22, dueDate: 'Yesterday' }
-  ];
 
   const fetchData = async(token: string) => {
 
