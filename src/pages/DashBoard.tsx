@@ -78,6 +78,11 @@ export default function DashBoard() {
         }
     };
 
+    function getDateFromTimestamp(timestamp: string) {
+        const date = new Date(timestamp);
+        return date.toLocaleDateString('en-CA'); // en-CA gives YYYY-MM-DD format
+    };
+
 
 
   const fetchData = async(token: string) => {
@@ -247,7 +252,7 @@ export default function DashBoard() {
                 {/* Today's Schedule */}
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                     <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-semibold text-gray-900">Today's Schedule</h2>
+                        <h2 className="text-xl font-semibold text-gray-900">Weekly Schedule</h2>
                         <div className="flex gap-2">
                             <button
                                 onClick={prevSlide}
@@ -256,6 +261,7 @@ export default function DashBoard() {
                             >
                                 <ChevronLeft className="w-5 h-5 text-gray-700" />
                             </button>
+                            
                             <button
                                 onClick={nextSlide}
                                 className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
@@ -296,15 +302,27 @@ export default function DashBoard() {
                                                                 </span>
                                                             </div>
                                                             <div className="flex justify-between">
+                                                                <span>Date:</span>
+                                                                <span>{getDateFromTimestamp(classItem.meeting_time_ist)}</span>
+                                                            </div>
+                                                            <div className="flex justify-between">
                                                                 <span>Duration:</span>
                                                                 <span>{classItem.duration} Mins</span>
                                                             </div>
                                                         </div>
-                                                        <Link to={classItem.url} target="_blank">
-                                                            <button className="w-full mt-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">
-                                                                Join Class
-                                                            </button>
-                                                        </Link>
+                                                        <button className={`w-full mt-3 py-2 ${getStatusColor(classItem.status)} text-white rounded-lg capitalize `}>
+                                                            {classItem.status}
+                                                        </button>
+                                                        {
+                                                            classItem.status == "ongoing"?
+                                                                <Link to={classItem.url} target="_blank">
+                                                                    <button className="w-full mt-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">
+                                                                        Join Class
+                                                                    </button>
+                                                                </Link>
+                                                                :
+                                                                <></>
+                                                        }
                                                     </div>
                                                 </div>
                                             ))}
